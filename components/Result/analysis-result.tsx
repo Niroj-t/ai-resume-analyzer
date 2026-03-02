@@ -19,26 +19,26 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import type { AnalysisResult } from "@/lib/types";
 
-export function AnalysisResults() {
-  // Static UI placeholders
-  const matchPercentage = 75;
+type AnalysisResultsProps = {
+  data?: AnalysisResult;
+  onReset?: () => void;
+};
 
-  const strengths = [
-    "Strong technical skills section",
-    "Clear work experience structure",
-    "Relevant project experience",
-  ];
-
-  const matchedKeywords = ["React", "TypeScript", "Node.js", "REST API"];
-
-  const missingSkills = ["Docker", "AWS", "CI/CD"];
-
-  const suggestions = [
-    "Add measurable achievements to experience section",
-    "Include more industry keywords",
-    "Highlight leadership experience",
-  ];
+export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
+  if (!data) {
+    return <p className="text-sm text-gray-500">No analysis yet.</p>;
+  }
+  const {
+    matchScore,
+    matchLabel,
+    strengths,
+    matchedKeywords,
+    missingSkills,
+    improvementSuggestions,
+    atsChecks,
+  } = data;
 
   return (
     <div className="space-y-6">
@@ -61,20 +61,18 @@ export function AnalysisResults() {
         <CardContent className="space-y-4">
           <div className="flex items-end gap-2">
             <span className="text-6xl font-bold text-blue-600">
-              {matchPercentage}%
+              {matchScore}%
             </span>
-            <span className="text-2xl text-gray-700 mb-2">
-              Good Match
-            </span>
+            <span className="text-2xl text-gray-700 mb-2">{matchLabel}</span>
           </div>
 
           <Progress
-            value={matchPercentage}
+            value={matchScore}
             className="h-3 bg-blue-100 [&>div]:bg-blue-600"
           />
 
           <p className="text-sm text-gray-600">
-            4 of 7 key requirements matched
+            This score is based on skills, responsibilities, and ATS-friendliness.
           </p>
         </CardContent>
       </Card>
@@ -93,8 +91,8 @@ export function AnalysisResults() {
 
         <CardContent>
           <ul className="space-y-2">
-            {strengths.map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
+            {strengths.map((item, index) => (
+              <li key={index} className="flex items-start gap-2">
                 <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5" />
                 <span className="text-sm">{item}</span>
               </li>
@@ -119,9 +117,9 @@ export function AnalysisResults() {
 
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {matchedKeywords.map((keyword, i) => (
+            {matchedKeywords.map((keyword, index) => (
               <Badge
-                key={i}
+                key={index}
                 variant="secondary"
                 className="bg-green-50 text-green-800 border border-blue-100"
               >
@@ -147,9 +145,9 @@ export function AnalysisResults() {
 
         <CardContent>
           <div className="flex flex-wrap gap-2">
-            {missingSkills.map((skill, i) => (
+            {missingSkills.map((skill, index) => (
               <Badge
-                key={i}
+                key={index}
                 variant="secondary"
                 className="bg-red-50 text-red-700 border border-red-200"
               >
@@ -177,8 +175,8 @@ export function AnalysisResults() {
 
         <CardContent>
           <ul className="space-y-3">
-            {suggestions.map((suggestion, i) => (
-              <li key={i} className="flex items-start gap-2">
+            {improvementSuggestions.map((suggestion, index) => (
+              <li key={index} className="flex items-start gap-2">
                 <Lightbulb className="w-5 h-5 text-yellow-500 mt-0.5" />
                 <span className="text-sm">{suggestion}</span>
               </li>
@@ -189,12 +187,12 @@ export function AnalysisResults() {
 
       <Separator />
 
-      {/* Reset Button (UI only) */}
       <div className="flex gap-4">
         <Button
           variant="outline"
           size="lg"
           className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50"
+          onClick={onReset}
         >
           <RotateCcw className="mr-2 h-5 w-5" />
           Analyze Another Resume

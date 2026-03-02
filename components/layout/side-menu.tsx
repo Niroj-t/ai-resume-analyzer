@@ -1,3 +1,5 @@
+// components/layout/side-menu.tsx
+import Link from "next/link";
 import { Upload, FileBarChart, Menu, FileSearch } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -9,23 +11,26 @@ import {
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 
-export function SideMenu() {
-  // Static UI state (visual only)
-  const activeSection = "upload";
-  const hasResult = false;
+type SideMenuProps = {
+  activeSection: "upload" | "analysis";
+  hasResult: boolean;
+};
 
+export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
   const menuItems = [
     {
       id: "upload",
       label: "Upload",
       icon: Upload,
       enabled: true,
+      href: "/",
     },
     {
-      id: "result",
-      label: "Result",
+      id: "analysis",
+      label: "Analysis",
       icon: FileBarChart,
       enabled: hasResult,
+      href: "/analysis",
     },
   ];
 
@@ -33,7 +38,6 @@ export function SideMenu() {
     <div className="h-full flex flex-col">
       {/* Logo / Title */}
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo/Brand */}
         <div className="flex items-center gap-2">
           <FileSearch className="w-6 h-6 text-blue-600" />
           <div className="flex flex-col">
@@ -70,13 +74,18 @@ export function SideMenu() {
                   "text-gray-700 hover:bg-blue-50",
                 isDisabled && "opacity-60 cursor-not-allowed",
               )}
+              asChild
             >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium">{item.label}</span>
-
-              {isActive && (
-                <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />
-              )}
+              <Link
+                href={isDisabled ? "#" : item.href}
+                aria-disabled={isDisabled}
+              >
+                <Icon className="w-5 h-5" />
+                <span className="font-medium">{item.label}</span>
+                {isActive && (
+                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />
+                )}
+              </Link>
             </Button>
           );
         })}
@@ -103,7 +112,6 @@ export function SideMenu() {
 
           <SheetContent side="left" className="w-64 p-0">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-
             <SidebarContent />
           </SheetContent>
         </Sheet>
