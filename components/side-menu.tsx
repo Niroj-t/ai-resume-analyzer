@@ -1,4 +1,3 @@
-// components/layout/side-menu.tsx
 import Link from "next/link";
 import { Upload, FileBarChart, Menu, FileSearch } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -36,7 +35,6 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
 
   const SidebarContent = () => (
     <div className="flex h-full flex-col bg-white">
-      {/* Logo / Title */}
       <div className="flex h-16 items-center gap-2 px-4 sm:px-6 lg:px-8">
         <FileSearch className="w-6 h-6 text-blue-600" />
         <div className="flex flex-col">
@@ -51,9 +49,7 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
 
       <Separator />
 
-      {/* Menu Items */}
-      <nav className="flex-1 p-6 ">
-        <div className="border-2 py-4 px-1 space-y-4 border-t">
+      <nav className="flex-1 p-6 space-y-4 border-t">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -87,7 +83,6 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
             </Button>
           );
         })}
-        </div>
       </nav>
       <Separator />
     </div>
@@ -115,7 +110,6 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
         </Sheet>
       </div>
 
-      {/* Desktop Sidebar */}
       <div className="hidden lg:block sticky top-0 left-0 h-screen w-64 shrink-0 border-r border-blue-100 shadow-sm">
         <SidebarContent />
       </div>

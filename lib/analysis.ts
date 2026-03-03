@@ -6,10 +6,6 @@ type RunAiAnalysisInput = {
   jobDescription: string;
 };
 
-/* -------------------------------------------------- */
-/* Environment Setup */
-/* -------------------------------------------------- */
-
 const apiKey = process.env.GEMINI_API_KEY;
 
 if (!apiKey) {
@@ -17,18 +13,8 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-
-/**
- * Recommended stable Gemini model
- * You can override via .env:
- * GEMINI_MODEL=gemini-1.5-flash-002
- */
 const modelName =
   process.env.GEMINI_MODEL ?? "gemini-3-flash-preview";
-
-/* -------------------------------------------------- */
-/* Main AI Analysis Function */
-/* -------------------------------------------------- */
 
 export async function runAiAnalysis(
   input: RunAiAnalysisInput,
@@ -37,7 +23,7 @@ export async function runAiAnalysis(
     model: modelName,
     generationConfig: {
       responseMimeType: "application/json",
-      temperature: 0.3, // more deterministic JSON
+      temperature: 0.3, 
       topP: 0.9,
     },
   });
@@ -94,10 +80,6 @@ Return ONLY a valid JSON object.
 Do NOT include markdown, explanations, or extra text.
 `;
 
-  /* -------------------------------------------------- */
-  /* Call Gemini */
-  /* -------------------------------------------------- */
-
   const result = await model.generateContent(prompt);
   const text = result.response.text();
 
@@ -105,19 +87,10 @@ Do NOT include markdown, explanations, or extra text.
     throw new Error("Gemini returned empty response");
   }
 
-  /* -------------------------------------------------- */
-  /* Clean AI Output (VERY IMPORTANT) */
-  /* -------------------------------------------------- */
-
-  // Gemini sometimes wraps JSON in ```json blocks
   const cleaned = text
     .replace(/```json/g, "")
     .replace(/```/g, "")
     .trim();
-
-  /* -------------------------------------------------- */
-  /* Parse JSON Safely */
-  /* -------------------------------------------------- */
 
   let parsed: AnalysisResult;
 

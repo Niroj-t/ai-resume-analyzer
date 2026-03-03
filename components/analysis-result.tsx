@@ -42,7 +42,6 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
 
   return (
     <div className="space-y-6">
-      {/* Match Score */}
       <Card className="border-2 border-blue-100 shadow-sm">
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -77,7 +76,6 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
         </CardContent>
       </Card>
 
-      {/* Strengths */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
@@ -101,7 +99,6 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
         </CardContent>
       </Card>
 
-      {/* Matched Keywords */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
@@ -131,7 +128,6 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
         </CardContent>
       </Card>
 
-      {/* Missing Skills */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
@@ -159,7 +155,6 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
         </CardContent>
       </Card>
 
-      {/* Suggestions */}
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">

@@ -182,7 +182,6 @@ export function UploadForm() {
           </CardContent>
         </Card>
 
-        {/* Submit */}
         <Button
           type="button"
           size="lg"

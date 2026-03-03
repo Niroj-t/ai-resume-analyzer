@@ -25,20 +25,15 @@ export function Header() {
       <div className="flex h-16 items-center justify-between px-6">
         <div className="flex-1" />
 
-        {/* USER MENU */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="ghost"
               className="flex items-center gap-2 text-blue-600 hover:bg-blue-100"
             >
-              {/* User Icon */}
               <User className="h-5 w-5 text-blue-500" />
-
-              {/* Username */}
               <span className="font-medium">{firstName}</span>
 
-              {/* Chevron */}
               <ChevronDown className="h-4 w-4 text-gray-400" />
             </Button>
           </DropdownMenuTrigger>

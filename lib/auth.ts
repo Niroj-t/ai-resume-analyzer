@@ -17,7 +17,6 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
-  // Choose ONE strategy – here we use database sessions since we have a Prisma adapter
   session: { strategy: "database" },
   secret: process.env.NEXTAUTH_SECRET,
 };

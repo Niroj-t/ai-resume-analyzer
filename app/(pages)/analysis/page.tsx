@@ -15,10 +15,10 @@ type AnalysisPageProps = {
 
 
 export default async function AnalysisPage({ searchParams }: AnalysisPageProps) {
-  const params = await searchParams;              // ✅ unwrap the Promise
+  const params = await searchParams;              
   const rawId = params.analysisId;
   const analysisId =
-    typeof rawId === "string" ? rawId : rawId?.[0]; // handle string | string[]
+    typeof rawId === "string" ? rawId : rawId?.[0]; 
 
   if (!analysisId) {
     return (
