@@ -1,5 +1,8 @@
+"use client";
 import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +14,19 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export function Header() {
-  // UI placeholders
-  const userName = "";
-  const userEmail = "user@example.com";
-  const userInitials = "U";
+ const { data: session, status } = useSession();
+
+  if (status === "loading") return null;
+
+  const userName = session?.user?.name ?? "";
+  const userEmail = session?.user?.email ?? "";
+
+  const userInitials = userName
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase();
+
 
   return (
     <header className="sticky top-0 z-30 w-full bg-white/90 border-b border-blue-100">
@@ -33,28 +45,26 @@ export function Header() {
                   </AvatarFallback>
                 </Avatar>
 
-                <span className="hidden sm:inline-block text-sm font-medium">
-                  {userName}
-                </span>
               </Button>
             </DropdownMenuTrigger>
 
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {userName}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {userEmail}
-                  </p>
+                  <p className="text-xs text-muted-foreground">{userEmail}</p>
                 </div>
               </DropdownMenuLabel>
 
               <DropdownMenuSeparator />
 
-              {/* UI only — no action */}
-              <DropdownMenuItem className="text-red-600 cursor-pointer">
+              <DropdownMenuItem
+                className="text-red-600 cursor-pointer"
+                onClick={() =>
+                  signOut({
+                    callbackUrl: "/login",
+                  })
+                }
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Sign out</span>
               </DropdownMenuItem>

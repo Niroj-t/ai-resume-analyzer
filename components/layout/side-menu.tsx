@@ -27,7 +27,7 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
     },
     {
       id: "analysis",
-      label: "Analysis",
+      label: "Result",
       icon: FileBarChart,
       enabled: hasResult,
       href: "/analysis",
