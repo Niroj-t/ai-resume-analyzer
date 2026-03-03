@@ -35,26 +35,25 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
   ];
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col">
+    <div className="flex h-full flex-col bg-white">
       {/* Logo / Title */}
-      <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2">
-          <FileSearch className="w-6 h-6 text-blue-600" />
-          <div className="flex flex-col">
-            <span className="font-bold text-lg leading-tight text-blue-700">
-              Resume Analyzer
-            </span>
-            <span className="text-[10px] text-gray-500 leading-tight hidden sm:block">
-              AI-Powered Analysis
-            </span>
-          </div>
+      <div className="flex h-16 items-center gap-2 px-4 sm:px-6 lg:px-8">
+        <FileSearch className="w-6 h-6 text-blue-600" />
+        <div className="flex flex-col">
+          <span className="font-bold text-lg text-blue-700">
+            Resume Analyzer
+          </span>
+          <span className="text-xs text-gray-500 hidden sm:block">
+            AI-Powered Analysis
+          </span>
         </div>
       </div>
 
       <Separator />
 
       {/* Menu Items */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-6 ">
+        <div className="border-2 py-4 px-1 space-y-4 border-t">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -66,31 +65,30 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
               disabled={isDisabled}
               variant={isActive ? "default" : "ghost"}
               className={cn(
-                "w-full justify-start gap-3",
+                "w-full justify-start gap-3 px-3 py-2 rounded-sm transition-colors duration-200",
                 isActive &&
                   "bg-blue-600 text-white hover:bg-blue-700 shadow-sm",
-                !isActive &&
-                  !isDisabled &&
-                  "text-gray-700 hover:bg-blue-50",
-                isDisabled && "opacity-60 cursor-not-allowed",
+                !isActive && !isDisabled && "text-gray-800 hover:bg-blue-50",
+                isDisabled && "opacity-50 cursor-not-allowed"
               )}
               asChild
             >
               <Link
                 href={isDisabled ? "#" : item.href}
                 aria-disabled={isDisabled}
+                aria-current={isActive ? "page" : undefined}
               >
                 <Icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
                 {isActive && (
-                  <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />
+                  <span className="ml-auto w-2 h-2 rounded-full bg-white" />
                 )}
               </Link>
             </Button>
           );
         })}
+        </div>
       </nav>
-
       <Separator />
     </div>
   );
@@ -106,11 +104,11 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
               size="icon"
               className="fixed top-4 left-4 z-50 shadow-lg"
             >
-              <Menu className="w-6 h-4" />
+              <Menu className="w-6 h-6" />
             </Button>
           </SheetTrigger>
 
-          <SheetContent side="left" className="w-64 p-0">
+          <SheetContent side="left" className="w-64 p-0 shadow-xl rounded-r-lg">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <SidebarContent />
           </SheetContent>
@@ -118,7 +116,7 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block sticky top-0 left-0 h-screen bg-white border-r border-blue-100 w-64 shrink-0 shadow-sm">
+      <div className="hidden lg:block sticky top-0 left-0 h-screen w-64 shrink-0 border-r border-blue-100 shadow-sm">
         <SidebarContent />
       </div>
     </>

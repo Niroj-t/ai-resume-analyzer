@@ -1,7 +1,7 @@
 import { Toaster } from "sonner";
-import { SideMenu } from "@/components/layout/side-menu";
-import { Header } from "@/components/layout/header";
-import { AnalysisResults } from "@/components/Result/analysis-result";
+import { SideMenu } from "@/components/side-menu";
+import { Header } from "@/components/header";
+import { AnalysisResults } from "@/components/analysis-result";
 import { db } from "@/lib/db";
 import type { AnalysisResult } from "@/lib/types";
 

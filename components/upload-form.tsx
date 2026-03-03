@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AnalysisResults } from "@/components/Result/analysis-result";
+import { AnalysisResults } from "@/components/analysis-result";
 import type { AnalysisResult } from "@/lib/types";
 
 export function UploadForm() {

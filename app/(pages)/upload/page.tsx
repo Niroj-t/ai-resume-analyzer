@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 
 import { Toaster } from "sonner";
-import { SideMenu } from "@/components/layout/side-menu";
-import { Header } from "@/components/layout/header";
-import { UploadForm } from "@/components/upload/upload-form";
+import { SideMenu } from "@/components/side-menu";
+import { Header } from "@/components/header";
+import { UploadForm } from "@/components/upload-form";
 
 export default async function UploadPage() {
   const session = await getServerSession(authOptions);
