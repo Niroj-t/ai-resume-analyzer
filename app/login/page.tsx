@@ -13,14 +13,14 @@ export default function Login() {
           backgroundImage: `url(/images/bg.jpg)`,
         }}
       >
-        <div className="absolute inset-0 bg-linear-to-br from-blue-900/90 via-blue-600/70 to-purple-500/50"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-blue-900/90 via-blue-400/50 to-purple-400/50"></div>
         
         {/* Content */}
-        <div className="relative z-10 flex flex-col justify-center items-center px-16 text-white text-center h-full">
-          <h1 className="text-6xl mb-4">
+        <div className="relative z-10 flex flex-col justify-center items-center px-28 gap-2 text-white text-center h-full">
+          <h1 className="text-6xl mb-4 font-bold">
             Resume Analyzer
           </h1>
-          <p className="text-lg text-blue-100 max-w-xl leading-relaxed">
+          <p className="text-lg text-white max-w-xl leading-relaxed">
             Leading the industry with innovative AI-powered<br></br>
             resume analysis for job seekers.
           </p>

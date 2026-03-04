@@ -1,3 +1,4 @@
+"use client";
 import {
   CheckCircle2,
   XCircle,
@@ -20,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import type { AnalysisResult } from "@/lib/types";
+import { useRouter } from "next/navigation";
 
 type AnalysisResultsProps = {
   data?: AnalysisResult;
@@ -39,7 +41,7 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
     improvementSuggestions,
     atsChecks,
   } = data;
-
+  const router = useRouter();
   return (
     <div className="space-y-6">
       <Card className="border-2 border-blue-100 shadow-sm">
@@ -71,7 +73,8 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
           />
 
           <p className="text-sm text-gray-600">
-            This score is based on skills, responsibilities, and ATS-friendliness.
+            This score is based on skills, responsibilities, and
+            ATS-friendliness.
           </p>
         </CardContent>
       </Card>
@@ -82,9 +85,7 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
             <CheckCircle2 className="w-5 h-5 text-blue-600" />
             <CardTitle className="text-blue-700">Strengths</CardTitle>
           </div>
-          <CardDescription>
-            What makes your resume stand out
-          </CardDescription>
+          <CardDescription>What makes your resume stand out</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -134,9 +135,7 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
             <XCircle className="w-5 h-5 text-red-500" />
             <CardTitle className="text-blue-700">Missing Skills</CardTitle>
           </div>
-          <CardDescription>
-            Skills missing from your resume
-          </CardDescription>
+          <CardDescription>Skills missing from your resume</CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -187,7 +186,9 @@ export function AnalysisResults({ data, onReset }: AnalysisResultsProps) {
           variant="outline"
           size="lg"
           className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50"
-          onClick={onReset}
+          onClick={() => {
+            router.push("/upload");
+          }}
         >
           <RotateCcw className="mr-2 h-5 w-5" />
           Analyze Another Resume

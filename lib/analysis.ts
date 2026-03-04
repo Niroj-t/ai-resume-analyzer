@@ -97,7 +97,7 @@ Do NOT include markdown, explanations, or extra text.
   try {
     parsed = JSON.parse(cleaned) as AnalysisResult;
   } catch (error) {
-    console.error("❌ Gemini raw response:\n", text);
+    console.error("Gemini raw response:\n", text);
 
     throw new Error(
       `Failed to parse Gemini JSON: ${(error as Error).message}`

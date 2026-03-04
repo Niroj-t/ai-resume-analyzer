@@ -61,7 +61,7 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
               disabled={isDisabled}
               variant={isActive ? "default" : "ghost"}
               className={cn(
-                "w-full justify-start gap-3 px-3 py-2 rounded-sm transition-colors duration-200",
+                "w-full justify-start gap-3 px-6 py-6 rounded-sm border-2 transition-colors duration-200",
                 isActive &&
                   "bg-blue-600 text-white hover:bg-blue-700 shadow-sm",
                 !isActive && !isDisabled && "text-gray-800 hover:bg-blue-50",
