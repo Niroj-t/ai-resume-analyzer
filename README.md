@@ -35,9 +35,32 @@ AI-Powered Resume Analyzer is a web application that helps job seekers optimize 
 - Gemini API key
 - Google/GitHub OAuth credentials
 
+### Environment Variables
+
+Create a .env file in the root directory:
+
+DATABASE_URL=your_neon_postgresql_url
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
+GEMINI_API_KEY=your_gemini_api_key
+NEXTAUTH_SECRET=your_nextauth_secret
+
+### Database Setup
+npx prisma generate
+npx prisma migrate dev --name init
+
+Running Locally
+npm run dev
+
+Open http://localhost:3000
+ to view the app.
+
 ### Installation
 
 ```bash
 git clone https://github.com/your-username/ai-resume-analyzer.git
 cd ai-resume-analyzer
 npm install
+
