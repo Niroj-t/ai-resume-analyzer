@@ -7,12 +7,14 @@ import { FileText } from "lucide-react";
 
 export default function Login() {
   return (
-    <div
-      className="min-h-screen flex bg-cover bg-center relative lg:bg-none"
-      style={{
-        backgroundImage: "url(/images/bg.jpg)",
-      }}
-    >
+    <div className="min-h-screen flex relative">
+      {/* Mobile Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center lg:hidden"
+        style={{
+          backgroundImage: "url(/images/bg.jpg)",
+        }}
+      ></div>
       {/* Mobile Overlay */}
       <div className="absolute inset-0 bg-black/40 lg:hidden"></div>
 
@@ -80,9 +82,7 @@ export default function Login() {
           {/* Mobile Text */}
           <div className="lg:hidden absolute top-20 left-0 w-full text-center text-white z-10 px-4">
             <h1 className="text-3xl mb-2 font-bold">AI Resume Analyzer</h1>
-            <p className="text-lg text-gray-200">
-              Optimize your resume
-            </p>
+            <p className="text-lg text-gray-200">Optimize your resume</p>
           </div>
         </div>
       </div>
