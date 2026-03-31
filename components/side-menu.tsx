@@ -76,9 +76,6 @@ export function SideMenu({ activeSection, hasResult }: SideMenuProps) {
               >
                 <Icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
-                {isActive && (
-                  <span className="ml-auto w-2 h-2 rounded-full bg-white" />
-                )}
               </Link>
             </Button>
           );

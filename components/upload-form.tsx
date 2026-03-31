@@ -112,13 +112,16 @@ export function UploadForm() {
         {/* Resume Upload */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-blue-700">Upload Resume (PDF)</CardTitle>
+            <CardTitle className="text-blue-700">Upload Resume</CardTitle>
+            <p className="text-sm text-gray-500">
+              Upload an updated resume for better analysis
+            </p>
           </CardHeader>
 
           <CardContent>
             <div
               onClick={openFilePicker}
-              className="cursor-pointer border-2 border-dashed rounded-lg p-8 text-center border-blue-200 hover:border-blue-400 bg-white/80 hover:bg-blue-50 transition-colors"
+              className="cursor-pointer h-50 border-2 border-dashed rounded-lg p-8 text-center border-blue-400 bg-blue-50 hover:bg-blue-100 transition-colors"
             >
               <input
                 ref={fileInputRef}
@@ -132,9 +135,7 @@ export function UploadForm() {
                 {resumeFile ? (
                   <>
                     <FileText className="w-12 h-12 text-blue-600" />
-                    <p className="text-sm font-medium">
-                      {resumeFile.name}
-                    </p>
+                    <p className="text-sm font-medium">{resumeFile.name}</p>
 
                     <Button
                       type="button"
@@ -153,11 +154,9 @@ export function UploadForm() {
                   <>
                     <Upload className="w-12 h-12 text-blue-400" />
                     <p className="text-sm font-medium">
-                      Click to upload your resume
+                      Click to upload a resume
                     </p>
-                    <p className="text-xs text-gray-500">
-                      PDF files only
-                    </p>
+                    <p className="text-xs text-gray-500">PDF files only</p>
                   </>
                 )}
               </div>
@@ -169,11 +168,14 @@ export function UploadForm() {
         <Card>
           <CardHeader>
             <CardTitle className="text-blue-700">Job Description</CardTitle>
+            <p className="text-sm text-gray-500">
+              Paste a clear job description for better processing
+            </p>
           </CardHeader>
 
           <CardContent>
             <Textarea
-              placeholder="Paste the job description here..."
+              placeholder="job description here..."
               className="min-h-200px resize-y border-blue-200 focus-visible:ring-blue-500"
               value={jobDescription}
               onChange={(event) => setJobDescription(event.target.value)}
@@ -203,11 +205,7 @@ export function UploadForm() {
         </Button>
       </form>
 
-      {error && (
-        <p className="text-sm text-red-600">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-sm text-red-600">{error}</p>}
 
       {analysisResult && (
         <div className="mt-6">
